@@ -49,7 +49,9 @@ function showResult(score, playerChoice, computerChoice) {
 
 // ** Calculate who won and show it on the screen **
 function onClickRPS(playerChoice) {
+  console.log(playerChoice)
 
+  
 }
 
 
@@ -57,8 +59,14 @@ function onClickRPS(playerChoice) {
 function playGame() {
   // use querySelector to select all RPS Buttons
 
+  const rpsButtons = document.querySelectorAll('.rpsButton')
   // * Adds an on click event listener to each RPS button and every time you click it, it calls the onClickRPS function with the RPS button that was last clicked *
-
+    rpsButtons.forEach(rpsButton => {
+    console.log(rpsButton.value)
+      rpsButton.onclick = () => {
+        onClickRPS(rpsButton.value)
+    }
+  })
   // 1. loop through the buttons using a forEach loop
   // 2. Add a 'click' event listener to each button
   // 3. Call the onClickRPS function every time someone clicks
