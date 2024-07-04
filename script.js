@@ -37,13 +37,16 @@ function getResult(playerChoice, computerChoice) {
   }else if(playerChoice == 'Scissors' && computerChoice == 'Paper')
   {
     score = 1
-  }else if(computerChoice == 'Rock' && playerChoice == 'Scissors') {
-    score = -1
-  }else if(computerChoice == 'Paper' && playerChoice == 'Rock') {
-    score = -1
-  }else if(computerChoice == 'Scissors' && playerChoice == 'Paper') {
+  }else {
     score = -1
   }
+  // else if(computerChoice == 'Rock' && playerChoice == 'Scissors') {
+  //   score = -1
+  // }else if(computerChoice == 'Paper' && playerChoice == 'Rock') {
+  //   score = -1
+  // }else if(computerChoice == 'Scissors' && playerChoice == 'Paper') {
+  //   score = -1
+  // }
 
   return score
 
