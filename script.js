@@ -67,13 +67,22 @@ function showResult(score, playerChoice, computerChoice) {
   // You should do result.innerText = 'You Lose!'
   // Don't forget to grab the div with the 'result' id!
   const result = document.getElementById('result')
+  const playerScore = document.getElementById('player-score')
+  const hands = document.getElementById('hands')
 
+  let pScore = playerScore.value
+  hands.innerText = ' 👨 chose ' + playerChoice + ' 🤖 chose ' + computerChoice
   if(score == -1) {
     result.innerText = 'You Lose!'
+    pScore = Number(playerScore.value) - 1
+    playerScore.innerText =  pScore
   }else if(score == 0) {
     result.innerText = 'Draw'
+    playerScore.innerText =  pScore
   }else if(score == 1) {
     result.innerText = 'You Win!!'
+    pScore = playerScore.value = Number(playerScore.value) - 1
+    playerScore.innerText =  pScore
   }
 }
 
@@ -82,7 +91,7 @@ function onClickRPS(playerChoice) {
   console.log(playerChoice)
   const computerChoice = getComputerChoice()
   const score = getResult(playerChoice, computerChoice)
-  showResult(score, computerChoice, playerChoice)
+  showResult(score, playerChoice, computerChoice)
   
 }
 
