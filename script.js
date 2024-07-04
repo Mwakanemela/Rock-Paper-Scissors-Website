@@ -15,6 +15,9 @@
 // getComputerChoice() 👉 'Scissors'
 function getComputerChoice() {
 
+  const rpsChoice = ['Rock', 'Paper', 'Scissors']
+  const randomNumber = Math.floor(Math.random() * 3)
+  return rpsChoice[randomNumber]
 }
 
 // ** getResult compares playerChoice & computerChoice and returns the score accordingly **
@@ -24,7 +27,25 @@ function getComputerChoice() {
 function getResult(playerChoice, computerChoice) {
   // return the result of score based on if you won, drew, or lost
 
+  let score = 0
+  if(playerChoice == computerChoice) {
+    score = 0
+  }else if(playerChoice == 'Rock' && computerChoice == 'Scissors'){
+    score = 1
+  }else if(playerChoice == 'Paper' && computerChoice == 'Rock') {
+    score = 1
+  }else if(playerChoice == 'Scissors' && computerChoice == 'Paper')
+  {
+    score = 1
+  }else if(computerChoice == 'Rock' && playerChoice == 'Scissors') {
+    score = -1
+  }else if(computerChoice == 'Paper' && playerChoice == 'Rock') {
+    score = -1
+  }else if(computerChoice == 'Scissors' && playerChoice == 'Paper') {
+    score = -1
+  }
 
+  return score
 
   // All situations where human draws, set `score` to 0
 
@@ -45,12 +66,23 @@ function showResult(score, playerChoice, computerChoice) {
   // Hint: on a score of -1
   // You should do result.innerText = 'You Lose!'
   // Don't forget to grab the div with the 'result' id!
+  const result = document.getElementById('result')
+
+  if(score == -1) {
+    result.innerText = 'You Lose!'
+  }else if(score == 0) {
+    result.innerText = 'Draw'
+  }else if(score == 1) {
+    result.innerText = 'You Win!!'
+  }
 }
 
 // ** Calculate who won and show it on the screen **
 function onClickRPS(playerChoice) {
   console.log(playerChoice)
-
+  const computerChoice = getComputerChoice()
+  const score = getResult(playerChoice, computerChoice)
+  showResult(score, computerChoice, playerChoice)
   
 }
 
@@ -75,7 +107,11 @@ function playGame() {
 
 
   // Add a click listener to the end game button that runs the endGame() function on click
+  const endGameButton = document.getElementById('endGameButton')
 
+  endGameButton.onclick = () => {
+    endGame()
+  }
 }
 
 // ** endGame function clears all the text on the DOM **
