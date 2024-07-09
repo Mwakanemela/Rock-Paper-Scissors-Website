@@ -10,6 +10,7 @@
     👉 Higher order Function (Math.random())
 */
 
+let totalScore = { computerScore: 0, playerScore: 0 }
 // ** getComputerChoice randomly selects between `rock` `paper` `scissors` and returns that string **
 // getComputerChoice() 👉 'Rock'
 // getComputerChoice() 👉 'Scissors'
@@ -73,19 +74,15 @@ function showResult(score, playerChoice, computerChoice) {
   const playerScore = document.getElementById('player-score')
   const hands = document.getElementById('hands')
 
-  let pScore = playerScore.value
+  playerScore.innerText = ` 👨 Player Score: ${totalScore.playerScore} 🤖 Computer Score: ${totalScore.computerScore}`
   hands.innerText = ' 👨 chose ' + playerChoice + ' 🤖 chose ' + computerChoice
+  
   if(score == -1) {
     result.innerText = 'You Lose!'
-    pScore = Number(playerScore.value) - 1
-    playerScore.innerText =  pScore
   }else if(score == 0) {
     result.innerText = 'Draw'
-    playerScore.innerText =  pScore
   }else if(score == 1) {
     result.innerText = 'You Win!!'
-    pScore = playerScore.value = Number(playerScore.value) - 1
-    playerScore.innerText =  pScore
   }
 }
 
@@ -94,8 +91,15 @@ function onClickRPS(playerChoice) {
   console.log(playerChoice)
   const computerChoice = getComputerChoice()
   const score = getResult(playerChoice, computerChoice)
-  showResult(score, playerChoice, computerChoice)
+  if(score == -1) {
+    totalScore['computerScore'] -= score
+  }else {
+    totalScore.playerScore += score
+  }
   
+  
+  showResult(score, playerChoice, computerChoice)
+
 }
 
 
