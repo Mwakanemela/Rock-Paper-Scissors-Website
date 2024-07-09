@@ -11,6 +11,9 @@
 */
 
 let totalScore = { computerScore: 0, playerScore: 0 }
+const result = document.getElementById('result')
+const playerScore = document.getElementById('player-score')
+const hands = document.getElementById('hands')
 // ** getComputerChoice randomly selects between `rock` `paper` `scissors` and returns that string **
 // getComputerChoice() 👉 'Rock'
 // getComputerChoice() 👉 'Scissors'
@@ -70,9 +73,7 @@ function showResult(score, playerChoice, computerChoice) {
   // Hint: on a score of -1
   // You should do result.innerText = 'You Lose!'
   // Don't forget to grab the div with the 'result' id!
-  const result = document.getElementById('result')
-  const playerScore = document.getElementById('player-score')
-  const hands = document.getElementById('hands')
+  
 
   playerScore.innerText = ` 👨 Player Score: ${totalScore.playerScore} 🤖 Computer Score: ${totalScore.computerScore}`
   hands.innerText = ' 👨 chose ' + playerChoice + ' 🤖 chose ' + computerChoice
@@ -132,7 +133,11 @@ function playGame() {
 
 // ** endGame function clears all the text on the DOM **
 function endGame() {
-
+  playerScore.innerText = ''
+  hands.innerText = ''
+  result.innerText = 'click the button to play again'
+  totalScore.playerScore = 0
+  totalScore.computerScore = 0
 }
 
 playGame()
